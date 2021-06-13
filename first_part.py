@@ -20,3 +20,8 @@ def get_space(input_string: str, min_length, max_length):
     before_space_length = random.randint(min_length, max_length - 1)
     after_space_length = random.randint(1, max_length - before_space_length)
     return ' ' * before_space_length + input_string + ' ' * after_space_length
+
+
+def get_int(min_length: int = 1, max_length: int = 10) -> str:
+    # print(min_length, max_length, 10 ** min_length, 10 ** max_length)
+    return str(random.randint(10 ** (min_length-1), 10 ** (max_length-1)))

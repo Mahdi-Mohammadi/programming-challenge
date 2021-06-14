@@ -1,5 +1,7 @@
+import os
 import random
 import string
+import yaml
 
 
 def get_alpha(min_length: int = 1, max_length: int = 10) -> str:
@@ -30,3 +32,40 @@ def get_float(min_length: int = 1, max_length: int = 10) -> str:
     float_length = random.randint(min_length, max_length)
     rand_float = round(random.uniform(10 ** min_length, 10 ** max_length / 2), float_length)
     return str(rand_float)[-max_length:]
+
+
+def create_random_file(file_path: str, max_file_size: int, length_config: dict) -> bool:
+    random_types = ['alpha', 'alphanumeric', 'int', 'float']
+    file_size = 0
+    min_length = length_config['min']
+    max_length = length_config['max']
+    min_space = length_config['min_space']
+    max_space = length_config['max_space']
+    with open(file_path, 'a') as file:
+        while file_size < max_file_size:
+            rand_type = random.choice(random_types)
+            if rand_type == 'alpha':
+                output = get_alpha(min_length, max_length)
+            elif rand_type == 'alphanumeric':
+                output = get_space(get_alphanumeric(min_length, max_length), min_space, max_space)
+            elif rand_type == 'int':
+                output = get_int(min_length, max_length)
+            elif rand_type == 'float':
+                output = get_float(min_length, max_length)
+            file.write(output + ', ')
+            file.tell()
+            file_size = os.stat(file_path).st_size
+        if file_size > max_file_size:
+            with open(file_path, 'rb+') as file_byte:
+                file_byte.seek(-(file_size - max_file_size), os.SEEK_END)
+                file_byte.truncate()
+        file.close()
+    return True
+
+
+if __name__ == '__main__':
+    config = yaml.safe_load(open("config.yml"))
+    file_path = config['result']['path']
+    if os.path.exists(file_path):
+        os.remove(file_path)
+    create_random_file(file_path, config['result']['size'], dict(config['length'].items()))

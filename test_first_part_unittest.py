@@ -4,6 +4,7 @@ from first_part import get_alpha
 from first_part import get_alphanumeric
 from first_part import get_space
 from first_part import get_int
+from first_part import get_float
 
 
 class TestAlpha(unittest.TestCase):
@@ -84,6 +85,30 @@ class TestInt(unittest.TestCase):
 
     def test_digit(self):
         self.assertIsInstance(int(get_int(2, 2)), int, "Output should be digits")
+
+
+class TestFloat(unittest.TestCase):
+    def test_output_type(self):
+        output_len = random.randint(3, 20)
+        self.assertIsInstance(get_float(output_len, output_len), str, f"Output should be {str}")
+
+    def test_length(self):
+        output_len = random.randint(3, 20)
+        self.assertEqual(len(get_float(output_len, output_len)), output_len, f"Length should be {output_len}")
+
+    def test_random_length(self):
+        output_len = random.randint(10, 20)
+        self.assertTrue(1 <= len(get_float(3, output_len)) <= output_len,
+                        f"Length should be random and between 1 and {output_len}")
+
+    def test_point_exist(self):
+        self.assertTrue('.' in get_float(20, 20), "Output should be contains point (.)")
+
+    def test_int(self):
+        self.assertIsInstance(int(get_float(4, 4)), int, "Output should be convert to integer")
+
+    def test_float(self):
+        self.assertIsInstance(float(get_float(4, 4)), float, "Output should be convert to float")
 
 
 if __name__ == '__main__':

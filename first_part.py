@@ -23,5 +23,10 @@ def get_space(input_string: str, min_length, max_length):
 
 
 def get_int(min_length: int = 1, max_length: int = 10) -> str:
-    # print(min_length, max_length, 10 ** min_length, 10 ** max_length)
-    return str(random.randint(10 ** (min_length-1), 10 ** (max_length-1)))
+    return str(random.randint(10 ** (min_length - 1), 10 ** (max_length - 1)))
+
+
+def get_float(min_length: int = 1, max_length: int = 10) -> str:
+    float_length = random.randint(min_length, max_length)
+    rand_float = round(random.uniform(10 ** min_length, 10 ** max_length / 2), float_length)
+    return str(rand_float)[-max_length:]

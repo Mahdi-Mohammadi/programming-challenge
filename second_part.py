@@ -3,15 +3,12 @@ import yaml
 
 
 def is_alpha(input_string: str) -> bool:
-    pass
+    return input_string.isalpha()
 
-
-def is_alphanumeric(input_string: str) -> bool:
-    pass
 
 
 def is_int(input_string: str) -> bool:
-    pass
+    return input_string.isnumeric()
 
 
 def is_float(input_string: str) -> bool:

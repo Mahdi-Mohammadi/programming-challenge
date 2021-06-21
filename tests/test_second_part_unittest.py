@@ -1,6 +1,3 @@
-import os
-import yaml
-import random
 import unittest
 from second_part import is_alpha
 from second_part import is_int

@@ -121,7 +121,7 @@ class TestCreateRandomFile(unittest.TestCase):
             os.remove(self.file_path)
 
     def setUp(self):
-        with open("../test_config.yml") as config_file:
+        with open("test_config.yml") as config_file:
             config = yaml.safe_load(config_file)
             self.file_path = config['result']['path']
             self.file_size = config['result']['size']

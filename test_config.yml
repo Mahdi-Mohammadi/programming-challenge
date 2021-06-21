@@ -1,5 +1,6 @@
 result:
-  path: test_output.txt
+  path: outputs/test_output.txt
+  detected_path: outputs/test_detected_output.txt
   size: 1024
 length:
   min: 2

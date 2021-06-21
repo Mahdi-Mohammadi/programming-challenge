@@ -19,10 +19,15 @@ Create a program that will read the generated file above and print to the consol
 Sample output:
 
 youruasdifafasd - alphabetical strings
+
 127371237 - integer
+
 asdfka12348fas - alphanumeric
+
 13123.123 - real numbers
+
 asjdfklasdjfklaasf - alphabetical strings
+
 123192u3kjwekhf - alphanumeric
 
 

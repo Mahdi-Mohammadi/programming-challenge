@@ -12,6 +12,8 @@ hisadfnnasd, 126263, assfdgsga12348fas, 13123.123,
 lizierdjfklaasf, 123192u3kjwekhf, 89181811238,122, 
 nmarcysfa900jkifh  , 3.781, 2.11, ....
 
+Run: python3 first_part.py
+
 ### Challenge B
 
 Create a program that will read the generated file above and print to the console the object and its type. Spaces before and after the alphanumeric object must be stripped.
@@ -30,7 +32,15 @@ asjdfklasdjfklaasf - alphabetical strings
 
 123192u3kjwekhf - alphanumeric
 
+Run: python3 second_part.py
 
 ### Challenge C
 
 Dockerize Challenge B. Write a docker file so that it reads the output from Challenge A as an Input. Once this container is started,  the program in challenge B is executed to process this file. The output should be saved in a file and should be exposed to the Docker host machine.
+
+
+Run:
+
+docker build -t challenge .  
+docker run --rm -it -d -v ${PWD}/outputs:/app/outputs challenge  
+ 

@@ -5,7 +5,7 @@ import unittest
 from second_part import is_alpha
 from second_part import is_int
 from second_part import is_float
-from second_part import check_random_file
+from second_part import type_detector
 
 
 class TestAlpha(unittest.TestCase):
@@ -45,6 +45,23 @@ class TestFloat(unittest.TestCase):
     def test_false_cases(self):
         for false_case in self.false_test_cases:
             self.assertFalse(is_float(false_case), false_case)
+
+
+class TestTypeDetector(unittest.TestCase):
+    test_cases = [
+        dict(input_string='AAA', result='alphabetical strings'),
+        dict(input_string='AAA1', result='alphanumeric'),
+        dict(input_string=' A1A1A ', result='alphanumeric'),
+        dict(input_string='1', result='integer'),
+        dict(input_string='11', result='integer'),
+        dict(input_string='1.1', result='real numbers'),
+        dict(input_string='111111.1', result='real numbers'),
+        dict(input_string='1.111111', result='real numbers'),
+    ]
+
+    def test_detection(self):
+        for case in self.test_cases:
+            self.assertEqual(type_detector(case['input_string']), case['result'])
 
 
 if __name__ == '__main__':

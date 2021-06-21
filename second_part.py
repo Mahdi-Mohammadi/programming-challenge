@@ -30,21 +30,27 @@ def type_detector(input_string: str) -> str:
         return 'alphabetical strings'
 
 
-def print_output(input_string: str, input_type: str) -> None:
-    print(f"{input_string} - {input_type}")
+def format_output(input_string: str, input_type: str) -> str:
+    return f"{input_string} - {input_type}"
 
 
-def file_type_detector(file_path: str) -> None:
-    with open(file_path, 'r') as file:
-        items = file.read().split(',')
-        for item in items:
-            item = item.strip()
-            print_output(item, type_detector(item))
+def file_type_detector(source_file_path: str, output_file_path: str) -> None:
+    output_file = open(output_file_path, 'w')
+    with open(source_file_path, 'r') as source_file:
+        terms = source_file.read().split(',')
+        for term in terms:
+            term = term.strip()
+            if not term:
+                continue
+            result = format_output(term, type_detector(term))
+            print(result)
+            output_file.write(result + '\n')
+        output_file.close()
 
 
 if __name__ == '__main__':
     config = yaml.safe_load(open("config.yml"))
-    file_path = config['result']['path']
-    if not os.path.exists(file_path):
-        raise FileExistsError(f"File '{file_path}' does not exist")
-    file_type_detector(file_path)
+    source_file_path = config['result']['path']
+    if not os.path.exists(source_file_path):
+        raise FileExistsError(f"File '{source_file_path}' does not exist")
+    file_type_detector(source_file_path, config['result']['detected_path'])

@@ -69,3 +69,4 @@ if __name__ == '__main__':
     if os.path.exists(file_path):
         os.remove(file_path)
     create_random_file(file_path, config['result']['size'], dict(config['length'].items()))
+    print('File created successfully.')

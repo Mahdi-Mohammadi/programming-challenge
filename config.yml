@@ -1,4 +1,5 @@
 result:
+  dir: outputs
   path: outputs/output.txt
   detected_path: outputs/detected_output.txt
   size: 10485760

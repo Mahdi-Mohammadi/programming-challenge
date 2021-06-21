@@ -66,6 +66,8 @@ def create_random_file(file_path: str, max_file_size: int, length_config: dict) 
 if __name__ == '__main__':
     config = yaml.safe_load(open("config.yml"))
     file_path = config['result']['path']
+    if not os.path.exists(config['result']['dir']):
+        os.makedirs(config['result']['dir'])
     if os.path.exists(file_path):
         os.remove(file_path)
     create_random_file(file_path, config['result']['size'], dict(config['length'].items()))
